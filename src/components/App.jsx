@@ -4,12 +4,8 @@ import { Toaster } from 'react-hot-toast';
 
 const Layout = lazy(() => import('./layout/Layout'));
 const Home = lazy(() => import('../components/pages/Home'));
-const Movies = lazy(() =>
-  import('../components/pages/Movies')
-);
-const MovieDetails = lazy(() =>
-  import('../components/pages/MovieDetails')
-);
+const Movies = lazy(() => import('../components/pages/Movies'));
+const MovieDetails = lazy(() => import('../components/pages/MovieDetails'));
 const Cast = lazy(() => import('./cast/Cast'));
 const Reviews = lazy(() => import('./reviews/Reviews'));
 
@@ -21,12 +17,10 @@ export const App = () => {
           <Route index element={<Home />} />
           <Route path="movies" element={<Movies />} />
 
-          <Route
-            path="movies/:movieId"
-            element={<MovieDetails />}
-          >
+          <Route path="movies/:movieId" element={<MovieDetails />}>
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
+            <Route path="*" element={<Navigate to=".." />} />
           </Route>
         </Route>
 

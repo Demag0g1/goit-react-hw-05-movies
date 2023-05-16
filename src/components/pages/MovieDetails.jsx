@@ -1,11 +1,6 @@
 import { Suspense } from 'react';
 import { useEffect, useState } from 'react';
-import {
-  useParams,
-  Outlet,
-  useLocation,
-  Link,
-} from 'react-router-dom';
+import { useParams, Outlet, useLocation, NavLink } from 'react-router-dom';
 import { LeftCircleTwoTone } from '@ant-design/icons';
 import { fetchById } from '../api/Api';
 import Loader from '../loader/Loader';
@@ -37,7 +32,14 @@ const MovieDetails = () => {
   return (
     <>
       <div>
-        <Link to={location?.state?.from ?? '/'}>
+        <NavLink
+          to={location?.state?.from ?? '/'}
+          style={{
+            textDecoration: 'none',
+            color: 'inherit',
+            display: 'inline-block',
+          }}
+        >
           <button type="button">
             <LeftCircleTwoTone
               style={{
@@ -52,7 +54,7 @@ const MovieDetails = () => {
             />
             Go back
           </button>
-        </Link>
+        </NavLink>
         <MovieItemCard movie={selectedMovie} />{' '}
         <Suspense fallback={<Loader />}>
           <Outlet />
